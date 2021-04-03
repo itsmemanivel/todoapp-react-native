@@ -4,11 +4,10 @@ import { Input, Button } from 'native-base';
 
 export default class AddToDo extends React.Component{    
     render(){
-        const completed = false;
+        // const completed = false;
         return(                
             <ListItem>
                 <CheckBox
-                    checked = { completed }
                     onPress = { () => console.log("set todo as completed") }
                  />
                 <Body>
@@ -24,6 +23,7 @@ export default class AddToDo extends React.Component{
                     <Icon name = { 'trash' } />                
                 </Button>
             </ListItem> 
+            
         );
     }
 }

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+// import  from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -30,71 +30,29 @@ import { Container, Header, Fab, Title, Content, Body,  Icon } from 'native-base
 
 import AddToDo from './add_todo_list';
 import AddToDoButton from './add_todo_button';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+class App extends React.Component {
+  render() {    
+    return (
+      <SafeAreaView style={{ flex:1, alignItems: 'center'}} >
+        <ScrollView 
+        contentInsetAdjustmentBehavior="automatic" style={{backgroundColor: '#fff', width: "100%"}}>
+           <Header><Body><Title>Growcify TODO</Title></Body></Header>
+           <View>
+             <AddToDo />
+             <AddToDo />
+             <AddToDo />
+           </View>
+       </ScrollView>
+       <AddToDoButton  style={styles.floatinBtn} />           
+      </SafeAreaView>
+    );
+  }
+}
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    // <SafeAreaView style={backgroundStyle}>
-    //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-    //   <ScrollView
-    //     contentInsetAdjustmentBehavior="automatic"
-    //     style={backgroundStyle}>
-    //     <Header><Body><Title>Growcify TODO</Title></Body></Header>
-    //     <View
-    //       style={{
-    //         backgroundColor: isDarkMode ? Colors.black : Colors.white,
-    //       }}>
-    //       {/* <Section title="Step One">
-           
-    //       </Section>
-    //       <Section title="See Your Changes">
-    //       </Section> */}
-          
-    //     </View>
-    //   </ScrollView>
-    // </SafeAreaView>
-    <Container>
-            
-        ...
-        <Content>  
-          <AddToDo />
-        </Content>             
-        <AddToDoButton />
-    </Container>
-  );
-};
 
 const styles = StyleSheet.create({
   sectionContainer: {
@@ -113,6 +71,19 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  floatinBtn: {
+
+    position: 'absolute',
+    alignSelf: 'center',
+    // right: 10,
+  }
 });
 
-export default App;
+
+export default function Main(){
+  return(
+    <PaperProvider>
+      <App />
+    </PaperProvider>
+  )
+};
